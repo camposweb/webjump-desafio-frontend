@@ -1,15 +1,17 @@
 import Sidebar from '@/components/Sidebar'
-import { openSansRegular } from '@/components/styles/fontStyles'
+import { Open_Sans } from 'next/font/google'
 import { HomeContainer, HomeContentInfo } from '@/components/styles/stylesIndex'
 
-export default function Home() {
+const openSansRegular = Open_Sans({ subsets: ['latin'], weight: '400' })
+
+export default function Contato() {
   return (
     <HomeContainer className={openSansRegular.className}>
       <Sidebar />
       <HomeContentInfo>
         <div></div>
         <section>
-          <h1>Home</h1>
+          <h1>Contato</h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
