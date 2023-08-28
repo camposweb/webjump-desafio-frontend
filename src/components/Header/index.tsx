@@ -14,8 +14,14 @@ import Image from 'next/image'
 import logoImg from '../../assets/webjump.png'
 import { openSansBold, openSansExtraBold } from '../styles/fontStyles'
 import { Menu } from 'lucide-react'
+import { useStore } from '@/store'
+import { useEffect } from 'react'
 
 export default function Header() {
+  const { loadCategories, categories } = useStore()
+  useEffect(() => {
+    loadCategories()
+  }, [])
   return (
     <HeaderContainer>
       <LoginContainer className={openSansBold.className}>
@@ -43,12 +49,12 @@ export default function Header() {
       <HeaderNav>
         <HeaderNavLink className={openSansExtraBold.className}>
           <Link href={'/'}>Página Inicial</Link>
-          {/* {categories &&
-            categories.map((category: CategoryProps) => {
+          {categories &&
+            categories.map((category) => {
               return (
                 <Link
                   key={category.id}
-                  as={`/categorias/${category.path}`}
+                  as={`/categorias/${category.id}`}
                   href={{
                     pathname: `/categorias/${category.path}`,
                     query: {
@@ -59,7 +65,7 @@ export default function Header() {
                   {category.name}
                 </Link>
               )
-            })} */}
+            })}
           <Link href={'/contato'}>Contato</Link>
         </HeaderNavLink>
       </HeaderNav>

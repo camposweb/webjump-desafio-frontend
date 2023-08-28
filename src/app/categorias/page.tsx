@@ -1,7 +1,5 @@
+'use client'
+
 export default function Categorias() {
-  return (
-    <div>
-      <p>asa</p>
-    </div>
-  )
+  return <div>asa</div>
 }

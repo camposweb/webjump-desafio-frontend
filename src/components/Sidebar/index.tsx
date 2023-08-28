@@ -3,8 +3,14 @@
 import Link from 'next/link'
 import { SidebarContainer } from './styles'
 import { Dot } from 'lucide-react'
+import { useStore } from '@/store'
+import { useEffect } from 'react'
 
 export default function Sidebar() {
+  const { loadCategories, categories } = useStore()
+  useEffect(() => {
+    loadCategories()
+  }, [])
   return (
     <SidebarContainer>
       <nav>
@@ -12,7 +18,7 @@ export default function Sidebar() {
           <Dot />
           Página Inicial
         </Link>
-        {/* {categories &&
+        {categories &&
           categories.map((category) => {
             return (
               <Link
@@ -29,7 +35,7 @@ export default function Sidebar() {
                 {category.name}
               </Link>
             )
-          })} */}
+          })}
         <Link href={'/contato'}>
           <Dot />
           Contato
