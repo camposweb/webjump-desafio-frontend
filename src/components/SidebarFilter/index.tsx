@@ -9,20 +9,30 @@ import {
   FilterNameType,
   SidebarFilterContainer,
 } from '../../styles/pages/sidebarFilter'
-import { useRouter } from 'next/router'
+
 import { Dot } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { useStore } from '@/store'
 
 export default function SidebarFilter() {
   const router = useRouter()
+  const { categories, filters } = useStore((store) => {
+    return {
+      categories: store.categories,
+      filters: store.filters,
+    }
+  })
   return (
     <SidebarFilterContainer>
       <FilterContentContainer>
         <h1 className={openSansBold.className}>filtre por</h1>
-        <FilterNameType className={openSansBold.className}>
-          categorias
-        </FilterNameType>
+        {categories && (
+          <FilterNameType className={openSansBold.className}>
+            categorias
+          </FilterNameType>
+        )}
         <FilterList className={openSansRegular.className}>
-          {/* {categories &&
+          {categories &&
             categories.map((category) => {
               return (
                 <>
@@ -38,11 +48,12 @@ export default function SidebarFilter() {
                   </li>
                 </>
               )
-            })} */}
+            })}
         </FilterList>
         <FilterNameType className={openSansBold.className}>
           cores
         </FilterNameType>
+
         <FilterButtonList>
           <li>
             <FilterButton variant="Azul" />
@@ -54,7 +65,19 @@ export default function SidebarFilter() {
             <FilterButton variant="Laranja" />
           </li>
         </FilterButtonList>
-        <FilterNameType className={openSansBold.className}>tipo</FilterNameType>
+        {filters &&
+          filters.map((filter) => {
+            return (
+              <>
+                <FilterNameType className={openSansBold.className}>
+                  {`${filter.color}es` || filter.gender}
+                </FilterNameType>
+              </>
+            )
+          })}
+        {/* <FilterNameType className={openSansBold.className}>
+          gênero
+        </FilterNameType>
         <FilterList className={openSansRegular.className}>
           <li>
             <button onClick={() => router.push('#')}>
@@ -74,7 +97,7 @@ export default function SidebarFilter() {
               Social
             </button>
           </li>
-        </FilterList>
+        </FilterList> */}
       </FilterContentContainer>
     </SidebarFilterContainer>
   )

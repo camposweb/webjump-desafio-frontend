@@ -18,10 +18,17 @@ import { useStore } from '@/store'
 import { useEffect } from 'react'
 
 export default function Header() {
-  const { loadCategories, categories } = useStore()
+  const { loadCategories, categories } = useStore((store) => {
+    return {
+      loadCategories: store.loadCategories,
+      categories: store.categories,
+    }
+  })
+
   useEffect(() => {
     loadCategories()
   }, [])
+
   return (
     <HeaderContainer>
       <LoginContainer className={openSansBold.className}>
@@ -54,12 +61,9 @@ export default function Header() {
               return (
                 <Link
                   key={category.id}
-                  as={`/categorias/${category.id}`}
+                  as={`/categorias/${category.path}`}
                   href={{
-                    pathname: `/categorias/${category.path}`,
-                    query: {
-                      categoryId: category.id,
-                    },
+                    pathname: `${category.path}`,
                   }}
                 >
                   {category.name}

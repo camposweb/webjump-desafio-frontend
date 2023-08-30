@@ -1,8 +1,21 @@
+'use client'
+
 import Sidebar from '@/components/Sidebar'
 import { openSansRegular } from '@/components/styles/fontStyles'
 import { HomeContainer, HomeContentInfo } from '@/components/styles/stylesIndex'
+import { useStore } from '@/store'
+import { useEffect } from 'react'
 
 export default function Home() {
+  const { loadCategories } = useStore((store) => {
+    return {
+      loadCategories: store.loadCategories,
+    }
+  })
+  useEffect(() => {
+    loadCategories()
+  }, [])
+
   return (
     <HomeContainer className={openSansRegular.className}>
       <Sidebar />
