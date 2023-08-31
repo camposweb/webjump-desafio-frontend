@@ -1,3 +1,4 @@
+'use client'
 import { Open_Sans } from 'next/font/google'
 
 export const openSansRegular = Open_Sans({ subsets: ['latin'], weight: '400' })

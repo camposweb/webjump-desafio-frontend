@@ -1,3 +1,5 @@
+'use client'
+
 import { DefaultTheme } from 'styled-components'
 
 export const theme: DefaultTheme = {
@@ -10,6 +12,9 @@ export const theme: DefaultTheme = {
     redLight: '#E50019',
     redRose: '#ED1A39',
     orange: '#F26324',
+    yellow: '#FFEA00',
+    beige: '#F5F5DC',
+    brown: '#808080',
     login: '#231F20',
     sidebar: '#E2DEDC',
     productName: '#626262',

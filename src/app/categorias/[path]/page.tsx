@@ -31,30 +31,43 @@ export default function Products() {
     activeCategory,
     loadProducts,
     categories,
+    activePage,
     products,
+    setFilterGender,
   } = useStore((store) => {
     return {
       loadCategories: store.loadCategories,
       loadFilters: store.loadFilters,
       loadActiveCategory: store.loadActiveCategory,
       activeCategory: store.activeCategory,
+      activePage: store.activePage,
       loadProducts: store.loadProducts,
       categories: store.categories,
       products: store.products,
+      setFilterGender: store.setFilterGender,
     }
   })
 
   useEffect(() => {
+    loadCategories()
+  }, [])
+
+  useEffect(() => {
+    setFilterGender('')
     if (params.path) {
       loadActiveCategory(params.path)
       loadProducts(params.path)
       loadFilters(params.path)
     }
-  }, [params.paths])
+  }, [params.path])
 
-  useEffect(() => {
+  /*  useEffect(() => {
     setPageActive(products)
-  }, [products])
+  }, [products]) */
+
+  // console.log(products)
+  console.log(products)
+  console.log(activePage)
 
   return (
     <ProductContainer>
@@ -114,8 +127,8 @@ export default function Products() {
             </FilterPrice>
           </BarOrderContainer>
           <ProductGridList>
-            {products &&
-              products.map((product) => {
+            {activePage &&
+              activePage.map((product) => {
                 return <CardProduct key={product.id} cards={product} />
               })}
           </ProductGridList>

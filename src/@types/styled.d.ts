@@ -1,3 +1,4 @@
+'use client'
 import 'styled-components'
 declare module 'styled-components' {
   export interface DefaultTheme {
@@ -6,10 +7,13 @@ declare module 'styled-components' {
       black: string
       blue: string
       banner: string
-      red: string
+      red: string | null
       redLight: string
       redRose: string
       orange: string
+      yellow: string
+      beige: string
+      brown: string
       login: string
       sidebar: string
       productName: string

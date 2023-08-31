@@ -5,6 +5,7 @@ import { css, styled } from 'styled-components'
 export const SidebarFilterContainer = styled.aside`
   width: 16.313rem;
   display: flex;
+  flex-direction: column;
   height: 100%;
   background: ${({ theme }) => theme.colors.white};
   border: 0.063rem solid ${({ theme }) => theme.colors.sidebar};
@@ -24,7 +25,7 @@ export const FilterContentContainer = styled.div`
 `
 
 export const FilterNameType = styled.strong`
-  //display: flex;
+  display: flex;
   font-size: 1.125rem;
   text-transform: uppercase;
   padding-bottom: 0.75rem;
@@ -32,7 +33,7 @@ export const FilterNameType = styled.strong`
 `
 
 export const FilterList = styled.ul`
-  //width: 100%;
+  width: 100%;
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -48,16 +49,37 @@ export const FilterList = styled.ul`
       border: 0;
       background: transparent;
       color: ${({ theme }) => theme.colors.productName};
+
+      &.buttonGender {
+        //width: 3rem;
+        //height: 1.5rem;
+        margin-top: 0.5rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        color: ${({ theme }) => theme.colors.red};
+        text-transform: uppercase;
+        padding: 0.5rem 1rem;
+        //flex-direction: column;
+        background: transparent;
+        border: 0.063rem solid ${({ theme }) => theme.colors.red};
+      }
     }
   }
 `
 
 export const FilterButtonList = styled.ul`
+  width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   list-style: none;
   gap: 0.2rem;
   padding-bottom: 2.063rem;
+
+  li {
+    display: flex;
+    flex-direction: column;
+  }
 `
 
 interface VariantProps {
@@ -69,20 +91,55 @@ export const FilterButton = styled.button<VariantProps>`
   height: 1.5rem;
   cursor: pointer;
   display: flex;
+  flex-direction: column;
   border: 0;
+  ${({ theme, variant }) =>
+    variant === 'Preta' &&
+    css`
+      background: ${({ theme }) => theme.colors.black};
+    `};
   ${({ theme, variant }) =>
     variant === 'Azul' &&
     css`
       background: ${({ theme }) => theme.colors.blue};
     `};
   ${({ theme, variant }) =>
-    variant === 'Vermelho' &&
+    variant === 'Amarela' &&
     css`
-      background: ${({ theme }) => theme.colors.redLight};
+      background: ${({ theme }) => theme.colors.yellow};
     `};
   ${({ theme, variant }) =>
     variant === 'Laranja' &&
     css`
       background: ${({ theme }) => theme.colors.orange};
     `};
+  ${({ theme, variant }) =>
+    variant === 'Rosa' &&
+    css`
+      background: ${({ theme }) => theme.colors.redRose};
+    `};
+  ${({ theme, variant }) =>
+    variant === 'Cinza' &&
+    css`
+      background: ${({ theme }) => theme.colors.brown};
+    `};
+  ${({ theme, variant }) =>
+    variant === 'Bege' &&
+    css`
+      background: ${({ theme }) => theme.colors.beige};
+    `};
+`
+
+export const ClearFilterButton = styled.button`
+  //width: 3rem;
+  height: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: ${({ theme }) => theme.colors.red};
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
+  //flex-direction: column;
+  background: transparent;
+  border: 0.063rem solid ${({ theme }) => theme.colors.red};
 `

@@ -1,8 +1,7 @@
+'use client'
 import Sidebar from '@/components/Sidebar'
-import { Open_Sans } from 'next/font/google'
+import { openSansRegular } from '@/components/styles/fontStyles'
 import { HomeContainer, HomeContentInfo } from '@/components/styles/stylesIndex'
-
-const openSansRegular = Open_Sans({ subsets: ['latin'], weight: '400' })
 
 export default function Contato() {
   return (

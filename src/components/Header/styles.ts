@@ -1,3 +1,5 @@
+'use client'
+
 import { styled } from 'styled-components'
 
 export const HeaderContainer = styled.header`
@@ -5,7 +7,6 @@ export const HeaderContainer = styled.header`
   display: flex;
   flex-direction: column;
   //height: 150px;
-  //background: ${({ theme }) => theme.colors.red};
 `
 
 export const LoginContainer = styled.div`

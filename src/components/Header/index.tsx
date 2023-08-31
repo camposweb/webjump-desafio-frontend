@@ -27,7 +27,7 @@ export default function Header() {
 
   useEffect(() => {
     loadCategories()
-  }, [])
+  }, [loadCategories])
 
   return (
     <HeaderContainer>
