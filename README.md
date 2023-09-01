@@ -7,7 +7,6 @@ Projeto desenvolvido a partir do desafio do processo seletivo para a vaga de Fro
 ## Tecnologias utilizadas
 
 - NextJS 13
-- third
 - styled-components
 - Zustand (Gerenciamento de estado)
 
