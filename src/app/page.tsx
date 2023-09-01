@@ -16,6 +16,10 @@ export default function Home() {
     loadCategories()
   }, [loadCategories])
 
+  useEffect(() => {
+    document.title = `Página Inicial - Webjump`
+  }, [])
+
   return (
     <HomeContainer className={openSansRegular.className}>
       <Sidebar />

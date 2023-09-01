@@ -60,7 +60,13 @@ export default function Products() {
 
   useEffect(() => {
     setActivePage(products)
-  }, [products])
+  }, [products, setActivePage])
+
+  useEffect(() => {
+    if (activeCategory) {
+      document.title = `Categoria ${activeCategory.name} - Webjump`
+    }
+  }, [activeCategory])
 
   return (
     <ProductContainer>

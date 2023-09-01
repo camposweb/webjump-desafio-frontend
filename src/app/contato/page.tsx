@@ -2,8 +2,13 @@
 import Sidebar from '@/components/Sidebar'
 import { openSansRegular } from '@/components/styles/fontStyles'
 import { HomeContainer, HomeContentInfo } from '@/components/styles/stylesIndex'
+import { useEffect } from 'react'
 
 export default function Contato() {
+  useEffect(() => {
+    document.title = `Contato - Webjump`
+  }, [])
+
   return (
     <HomeContainer className={openSansRegular.className}>
       <Sidebar />
