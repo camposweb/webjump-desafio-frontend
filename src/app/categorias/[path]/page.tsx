@@ -22,7 +22,6 @@ import { useParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 export default function Products() {
-  const [pageActive, setPageActive] = useState<ProductsProps[]>([])
   const params = useParams()
   const {
     loadCategories,
@@ -34,6 +33,7 @@ export default function Products() {
     activePage,
     products,
     setFilterGender,
+    setActivePage,
   } = useStore((store) => {
     return {
       loadCategories: store.loadCategories,
@@ -45,12 +45,9 @@ export default function Products() {
       categories: store.categories,
       products: store.products,
       setFilterGender: store.setFilterGender,
+      setActivePage: store.setActivePage,
     }
   })
-
-  useEffect(() => {
-    loadCategories()
-  }, [])
 
   useEffect(() => {
     setFilterGender('')
@@ -61,13 +58,9 @@ export default function Products() {
     }
   }, [params.path])
 
-  /*  useEffect(() => {
-    setPageActive(products)
-  }, [products]) */
-
-  // console.log(products)
-  console.log(products)
-  console.log(activePage)
+  useEffect(() => {
+    setActivePage(products)
+  }, [products])
 
   return (
     <ProductContainer>
@@ -96,7 +89,6 @@ export default function Products() {
         <ProductInfoContainer>
           <ProductNameCategory className={openSansRegular.className}>
             {activeCategory && activeCategory.name}
-            {/* {filterPathName?.map((title) => title.name)} */}
           </ProductNameCategory>
           <Separator />
           <BarOrderContainer>
@@ -113,13 +105,8 @@ export default function Products() {
                 <label htmlFor="price" className={openSansBold.className}>
                   ordenar por
                 </label>
-                <select
-                  name="r"
-                  id="price"
-                  placeholder="as"
-                  className={openSansBold.className}
-                >
-                  <option value="">Preço</option>
+                <select id="price" className={openSansBold.className}>
+                  <option value="">Selecione</option>
                   <option value="">Menor preço</option>
                   <option value="">Maior preço</option>
                 </select>

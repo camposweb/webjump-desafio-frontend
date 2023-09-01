@@ -14,7 +14,7 @@ export default function Home() {
   })
   useEffect(() => {
     loadCategories()
-  }, [])
+  }, [loadCategories])
 
   return (
     <HomeContainer className={openSansRegular.className}>

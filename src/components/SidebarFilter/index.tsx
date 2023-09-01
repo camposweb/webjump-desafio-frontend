@@ -37,10 +37,6 @@ export default function SidebarFilter() {
     }
   })
 
-  /* const handleFilterGender = ('') => {
-    setFilterGender('')
-  } */
-
   return (
     <SidebarFilterContainer>
       <FilterContentContainer>
@@ -69,20 +65,6 @@ export default function SidebarFilter() {
               )
             })}
         </FilterList>
-        {/* <FilterNameType className={openSansBold.className}>
-          cores
-        </FilterNameType>
-        <FilterButtonList>
-          <li>
-            <FilterButton variant="Azul" />
-          </li>
-          <li>
-            <FilterButton variant="Vermelho" />
-          </li>
-          <li>
-            <FilterButton variant="Laranja" />
-          </li>
-        </FilterButtonList> */}
         {filters &&
           filters.map((filter) => {
             return (
@@ -94,15 +76,21 @@ export default function SidebarFilter() {
                   <>
                     <FilterList className={openSansRegular.className}>
                       <li>
-                        <button onClick={() => setFilterGender('Masculina')}>
+                        <button
+                          onClick={() => setFilterGender('Masculina')}
+                          title="Masculina"
+                        >
                           <Dot color="#626262" />
-                          Masculino
+                          Masculina
                         </button>
                       </li>
                       <li>
-                        <button onClick={() => setFilterGender('Feminina')}>
+                        <button
+                          onClick={() => setFilterGender('Feminina')}
+                          title="Feminina"
+                        >
                           <Dot color="#626262" />
-                          Feminino
+                          Feminina
                         </button>
                       </li>
                       <li>
@@ -123,42 +111,49 @@ export default function SidebarFilter() {
                         <FilterButton
                           variant="Preta"
                           onClick={() => setFilterColor('Preta')}
+                          title="Preta"
                         />
                       </li>
                       <li>
                         <FilterButton
                           variant="Azul"
                           onClick={() => setFilterColor('Azul')}
+                          title="Azul"
                         />
                       </li>
                       <li>
                         <FilterButton
                           variant="Amarela"
                           onClick={() => setFilterColor('Amarela')}
+                          title="Amarela"
                         />
                       </li>
                       <li>
                         <FilterButton
                           variant="Laranja"
                           onClick={() => setFilterColor('Laranja')}
+                          title="Laranja"
                         />
                       </li>
                       <li>
                         <FilterButton
                           variant="Rosa"
                           onClick={() => setFilterColor('Rosa')}
+                          title="Rosa"
                         />
                       </li>
                       <li>
                         <FilterButton
                           variant="Cinza"
                           onClick={() => setFilterColor('Cinza')}
+                          title="Cinza"
                         />
                       </li>
                       <li>
                         <FilterButton
                           variant="Bege"
                           onClick={() => setFilterColor('Bege')}
+                          title="Bege"
                         />
                       </li>
                       <li>
