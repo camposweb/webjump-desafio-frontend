@@ -29,58 +29,58 @@ export default function HeaderMobile() {
   useEffect(() => {
     loadCategories()
   }, [loadCategories])
+
   return (
     <HeaderMobileContainer>
-      <DropdownMenu.Root>
-        <NavMobileHeaderContainer>
-          <div>
-            <DropdownMenu.Trigger asChild>
-              <NavButtonMobile>
-                <Menu size={30} color="#000" />
-              </NavButtonMobile>
-            </DropdownMenu.Trigger>
-          </div>
-          <div>
-            <Link href={'/'}>
-              <Image src={logoImg} alt="" />
-            </Link>
-          </div>
-          <div>
-            <ShoppingCart size={30} fill="#000" color="#000" />
-          </div>
-        </NavMobileHeaderContainer>
-        <NavMenuMobile>
-          <NavMenuContent align="center">
-            <NavMenuLink className={openSansExtraBold.className}>
-              <Link href={'/'}>Página Inicial</Link>
-            </NavMenuLink>
-            {categories &&
-              categories.map((category) => {
-                return (
-                  <>
-                    <NavMenuLink
-                      className={openSansExtraBold.className}
-                      key={category.id}
-                    >
-                      <Link
-                        as={`/categorias/${category.path}`}
-                        href={{
-                          pathname: `${category.path}`,
-                        }}
+      <NavMobileHeaderContainer>
+        <DropdownMenu.Root>
+          <DropdownMenu.Trigger asChild>
+            <NavButtonMobile>
+              <Menu size={30} color="#000" />
+            </NavButtonMobile>
+          </DropdownMenu.Trigger>
+          <NavMenuMobile>
+            <NavMenuContent className="content">
+              <NavMenuLink className={`${openSansExtraBold.className} item`}>
+                <Link href={'/'}>Página Inicial</Link>
+              </NavMenuLink>
+              {categories &&
+                categories.map((category) => {
+                  return (
+                    <>
+                      <NavMenuLink
+                        className={`${openSansExtraBold.className} item`}
+                        key={category.id}
                       >
-                        {category.name}
-                      </Link>
-                    </NavMenuLink>
-                  </>
-                )
-              })}
+                        <Link
+                          as={`/categorias/${category.path}`}
+                          href={{
+                            pathname: `${category.path}`,
+                          }}
+                        >
+                          {category.name}
+                        </Link>
+                      </NavMenuLink>
+                    </>
+                  )
+                })}
 
-            <NavMenuLink className={openSansExtraBold.className}>
-              <Link href={'/contato'}>Contato</Link>
-            </NavMenuLink>
-          </NavMenuContent>
-        </NavMenuMobile>
-      </DropdownMenu.Root>
+              <NavMenuLink className={`${openSansExtraBold.className} item`}>
+                <Link href={'/contato'}>Contato</Link>
+              </NavMenuLink>
+            </NavMenuContent>
+          </NavMenuMobile>
+        </DropdownMenu.Root>
+
+        <div>
+          <Link href={'/'}>
+            <Image src={logoImg} alt="" />
+          </Link>
+        </div>
+        <div>
+          <ShoppingCart size={30} fill="#000" color="#000" />
+        </div>
+      </NavMobileHeaderContainer>
     </HeaderMobileContainer>
   )
 }

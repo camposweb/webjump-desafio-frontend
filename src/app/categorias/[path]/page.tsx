@@ -35,6 +35,8 @@ export default function Products() {
     setFilterGender,
     setActivePage,
     setFilterPrice,
+    setFilterPriceAsc,
+    setFilterPriceDesc,
     clearFilter,
   } = useStore((store) => {
     return {
@@ -49,6 +51,8 @@ export default function Products() {
       setFilterGender: store.setFilterGender,
       setActivePage: store.setActivePage,
       setFilterPrice: store.setFilterPrice,
+      setFilterPriceAsc: store.setFilterPriceAsc,
+      setFilterPriceDesc: store.setFilterPriceDesc,
       clearFilter: store.clearFilter,
     }
   })
@@ -161,22 +165,15 @@ export default function Products() {
                 <label htmlFor="price" className={openSansBold.className}>
                   ordenar por
                 </label>
-                <select id="price" className={openSansBold.className}>
-                  <option value="Padrão" onClick={() => clearFilter()}>
-                    Padrão
-                  </option>
-                  <option
-                    value="PriceAsc"
-                    onClick={() => setFilterPrice('PriceAsc')}
-                  >
-                    Menor preço
-                  </option>
-                  <option
-                    value="PriceDesc"
-                    onClick={() => setFilterPrice('PriceDesc')}
-                  >
-                    Maior preço
-                  </option>
+                <select
+                  id="price"
+                  defaultValue={'Padrão'}
+                  onChange={(e) => setFilterPrice(e.target.value)}
+                  className={openSansBold.className}
+                >
+                  <option value="Padrão">Padrão</option>
+                  <option value="PriceAsc">Menor preço</option>
+                  <option value="PriceDesc">Maior preço</option>
                 </select>
               </form>
             </FilterPrice>

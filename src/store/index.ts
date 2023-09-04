@@ -43,6 +43,8 @@ interface ProductsState {
   setFilterGender: (gender: string) => void
   setFilterColor: (color: string) => void
   setFilterPrice: (string: string) => void
+  setFilterPriceAsc: () => void
+  setFilterPriceDesc: () => void
   clearFilter: () => void
 }
 
@@ -132,22 +134,32 @@ export const useStore = create<ProductsState>((set, get) => {
     setFilterPrice: (string: string) => {
       set({ isLoanding: true })
       const { activePage, products, clearFilter } = get()
-      /* const SortByPrice = activePage.map(
-        (page) => (page.price && page.specialPrice) || page.price,
-      ) */
-      if (string === 'Padrão') {
-        set({ activePage: products })
-      } else if (string === 'PriceAsc') {
+      /* if (string === 'Padrão') {
+        set({ clearFilter })
+      } */
+      if (string === 'PriceAsc') {
         const priceAsc = activePage.sort((a, b) => (a.price > b.price ? 1 : -1))
         set({ activePage: priceAsc })
-      } else if (string === 'PriceDesc') {
+      }
+      if (string === 'PriceDesc') {
         const priceDesc = activePage.sort((a, b) =>
           a.price < b.price ? 1 : -1,
         )
         set({ activePage: priceDesc })
-      } else {
-        set({ activePage: products })
       }
+    },
+    setFilterPriceAsc: () => {
+      set({ isLoanding: true })
+
+      const { activePage, products } = get()
+      const priceAsc = activePage.sort((a, b) => (a.price > b.price ? 1 : -1))
+      set({ activePage: priceAsc })
+    },
+    setFilterPriceDesc: () => {
+      set({ isLoanding: true })
+      const { activePage, products } = get()
+      const priceDesc = activePage.sort((a, b) => (a.price < b.price ? 1 : -1))
+      set({ activePage: priceDesc })
     },
     clearFilter: () => {
       set({ isLoanding: true })

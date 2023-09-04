@@ -41,13 +41,13 @@ export const NavMenuMobile = styled(DropdownMenu.Portal)`
 export const NavMenuContent = styled(DropdownMenu.Content)`
   display: none;
   @media (max-width: 768px) {
-    width: 100vw;
     //width: 100vw;
-    height: 100vh;
-    flex-direction: column;
+    //width: 100vw;
+    //height: 100vh;
+    //flex-direction: column;
     display: flex;
-    margin-top: -5.5rem;
-    gap: 1rem;
+    //margin-top: -5.5rem;
+    //gap: 1rem;
     //justify-content: center;
     //padding: 1.875rem 0.938rem;
     background: ${({ theme }) => theme.colors.red};
@@ -56,14 +56,15 @@ export const NavMenuContent = styled(DropdownMenu.Content)`
 
 export const NavMenuLink = styled(DropdownMenu.Item)`
   @media (max-width: 768px) {
+    //all: unset;
     //width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 1rem;
+    //display: flex;
+    //flex-direction: column;
+    //gap: 1rem;
+    //margin-top: 1rem;
     //justify-content: center;
     //justify-items: center;
-    text-align: center;
+    //text-align: center;
     a {
       color: ${({ theme }) => theme.colors.white};
       text-decoration: none;
