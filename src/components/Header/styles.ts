@@ -4,9 +4,13 @@ import { styled } from 'styled-components'
 
 export const HeaderContainer = styled.header`
   //max-width: 90rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   //height: 150px;
+  @media (max-width: 768px) {
+    //padding: 0 0.938rem;
+  }
 `
 
 export const LoginContainer = styled.div`
@@ -23,6 +27,14 @@ export const LoginContainer = styled.div`
     padding: 0.2rem 0;
     justify-content: center;
   }
+
+  @media (max-width: 926px) {
+    padding: 0.2rem 1.25rem;
+  }
+
+  @media (max-width: 1024px) {
+    padding: 0 1.25rem;
+  }
 `
 export const LoginLink = styled.nav`
   span {
@@ -36,27 +48,22 @@ export const LoginLink = styled.nav`
 `
 
 export const HeaderMain = styled.div`
+  width: 100%;
   display: flex;
   padding: 1.875rem 6.25rem;
   align-items: center;
   justify-content: space-between;
 
-  svg {
-    display: flex;
-    visibility: hidden;
+  @media (max-width: 768px) {
+    display: none;
   }
 
-  @media (max-width: 768px) {
-    svg {
-      display: flex;
-      justify-content: start;
-      gap: 5rem;
-      visibility: visible;
-    }
-    div {
-      display: flex;
-      align-items: center;
-    }
+  @media (max-width: 926px) {
+    padding: 1.875rem 1.25rem;
+  }
+
+  @media (max-width: 1024px) {
+    padding: 1.875rem 1.25rem;
   }
 `
 
@@ -67,7 +74,7 @@ export const HeaderNav = styled.div`
   align-items: center;
 
   @media (max-width: 768px) {
-    visibility: hidden;
+    display: none;
   }
 `
 
@@ -84,6 +91,18 @@ export const HeaderNavLink = styled.nav`
     color: ${({ theme }) => theme.colors.white};
     text-decoration: none;
     font-size: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.875rem 0.938rem;
+  }
+
+  @media (max-width: 926px) {
+    padding: 1.875rem 1.25rem;
+  }
+
+  @media (max-width: 1024px) {
+    padding: 1.875rem 1.25rem;
   }
 `
 
@@ -105,10 +124,5 @@ export const FormContainer = styled.form`
     &:hover {
       cursor: pointer;
     }
-  }
-
-  @media (max-width: 768px) {
-    //display: block;
-    visibility: hidden;
   }
 `

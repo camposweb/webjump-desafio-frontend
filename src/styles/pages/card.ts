@@ -15,11 +15,18 @@ export const CardProductImg = styled.div`
   align-items: center;
   justify-content: center;
   border: 0.063rem solid ${({ theme }) => theme.colors.sidebar};
+
+  @media (max-width: 768px) {
+    img {
+      padding: 1rem 0.5rem;
+    }
+  }
 `
 
 export const CardProductName = styled.span`
   display: flex;
   margin-top: 0.625rem;
+  text-align: center;
   justify-content: center;
   text-transform: uppercase;
   font-size: 1rem;

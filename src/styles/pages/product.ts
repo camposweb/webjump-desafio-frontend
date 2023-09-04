@@ -7,6 +7,16 @@ export const ProductContainer = styled.main`
   display: flex;
   flex-direction: column;
   padding: 1.75rem 6.25rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 1.75rem 0.938rem;
+    //background: ${({ theme }) => theme.colors.blue};
+  }
+
+  @media (max-width: 1024px) {
+    padding: 1.875rem 1.25rem;
+  }
 `
 
 export const Breadcrumb = styled.div`
@@ -30,6 +40,10 @@ export const Breadcrumb = styled.div`
       }
     }
   }
+
+  @media (max-width: 768px) {
+    //background: ${({ theme }) => theme.colors.brown};
+  }
 `
 
 export const ProductContentContainer = styled.div`
@@ -38,6 +52,11 @@ export const ProductContentContainer = styled.div`
   margin-top: 1.438rem;
   justify-content: space-between;
   gap: 1.563rem;
+
+  @media (max-width: 768px) {
+    //padding: 0 0.938rem;
+    flex-direction: column;
+  }
 `
 
 export const ProductInfoContainer = styled.section`

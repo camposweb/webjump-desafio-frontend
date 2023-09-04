@@ -1,5 +1,5 @@
 'use client'
-
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import Link from 'next/link'
 import {
   FormContainer,
@@ -13,9 +13,10 @@ import {
 import Image from 'next/image'
 import logoImg from '../../assets/webjump.png'
 import { openSansBold, openSansExtraBold } from '../styles/fontStyles'
-import { Menu } from 'lucide-react'
+import { Menu, ShoppingCart } from 'lucide-react'
 import { useStore } from '@/store'
 import { useEffect } from 'react'
+import HeaderMobile from '../HeaderMobile'
 
 export default function Header() {
   const { loadCategories, categories } = useStore((store) => {
@@ -38,14 +39,11 @@ export default function Header() {
           <Link href={'#'}>Cadastre-se</Link>
         </LoginLink>
       </LoginContainer>
+      <HeaderMobile />
       <HeaderMain>
-        <div>
-          <Menu color="#000" />
-
-          <Link href={'/'}>
-            <Image src={logoImg} alt="" />
-          </Link>
-        </div>
+        <Link href={'/'}>
+          <Image src={logoImg} alt="" />
+        </Link>
         <FormContainer>
           <input type="text" />
           <button type="submit" className={openSansExtraBold.className}>

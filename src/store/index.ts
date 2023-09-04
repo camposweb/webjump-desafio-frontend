@@ -42,6 +42,7 @@ interface ProductsState {
   loadActiveCategory: (path: string | string[]) => Promise<void>
   setFilterGender: (gender: string) => void
   setFilterColor: (color: string) => void
+  setFilterPrice: (string: string) => void
   clearFilter: () => void
 }
 
@@ -126,6 +127,26 @@ export const useStore = create<ProductsState>((set, get) => {
           activePage: filter,
           isLoanding: false,
         })
+      }
+    },
+    setFilterPrice: (string: string) => {
+      set({ isLoanding: true })
+      const { activePage, products, clearFilter } = get()
+      /* const SortByPrice = activePage.map(
+        (page) => (page.price && page.specialPrice) || page.price,
+      ) */
+      if (string === 'Padrão') {
+        set({ activePage: products })
+      } else if (string === 'PriceAsc') {
+        const priceAsc = activePage.sort((a, b) => (a.price > b.price ? 1 : -1))
+        set({ activePage: priceAsc })
+      } else if (string === 'PriceDesc') {
+        const priceDesc = activePage.sort((a, b) =>
+          a.price < b.price ? 1 : -1,
+        )
+        set({ activePage: priceDesc })
+      } else {
+        set({ activePage: products })
       }
     },
     clearFilter: () => {

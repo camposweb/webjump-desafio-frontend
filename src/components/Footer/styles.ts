@@ -7,4 +7,8 @@ export const FooterContainer = styled.footer`
   display: flex;
   height: 11rem;
   background: ${({ theme }) => theme.colors.red};
+
+  @media (max-width: 768px) {
+    //background: ${({ theme }) => theme.colors.beige};
+  }
 `

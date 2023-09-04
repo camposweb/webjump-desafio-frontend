@@ -11,7 +11,11 @@ export const HomeContainer = styled.main`
   gap: 1.563rem;
 
   @media (max-width: 768px) {
+    padding: 1.5rem 0.938rem;
     flex-direction: column;
+  }
+  @media (max-width: 926px) {
+    padding: 1.5rem 1.25rem;
   }
 `
 
@@ -23,6 +27,9 @@ export const HomeContentInfo = styled.div`
     display: flex;
     flex-direction: column;
     background: ${({ theme }) => theme.colors.banner};
+    @media (max-width: 768px) {
+      height: 5.375rem;
+    }
   }
 
   section {

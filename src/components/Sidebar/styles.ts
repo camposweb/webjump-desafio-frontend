@@ -21,4 +21,8 @@ export const SidebarContainer = styled.aside`
       color: ${({ theme }) => theme.colors.black};
     }
   }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `

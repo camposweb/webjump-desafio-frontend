@@ -3,7 +3,7 @@
 import CardProduct from '@/components/Card'
 import SidebarFilter from '@/components/SidebarFilter'
 import { openSansBold, openSansRegular } from '@/components/styles/fontStyles'
-import { ProductsProps, useStore } from '@/store'
+import { CategoryProps, ProductsProps, useStore } from '@/store'
 import {
   BarOrderContainer,
   Breadcrumb,
@@ -34,6 +34,8 @@ export default function Products() {
     products,
     setFilterGender,
     setActivePage,
+    setFilterPrice,
+    clearFilter,
   } = useStore((store) => {
     return {
       loadCategories: store.loadCategories,
@@ -46,27 +48,75 @@ export default function Products() {
       products: store.products,
       setFilterGender: store.setFilterGender,
       setActivePage: store.setActivePage,
+      setFilterPrice: store.setFilterPrice,
+      clearFilter: store.clearFilter,
     }
   })
 
+  // const catPath = categories.
+
   useEffect(() => {
     setFilterGender('')
+
     if (params.path) {
+      loadActiveCategory(params.path)
+      // loadCategories()
+      const cat = categories.map((category) => category.path)
+      // const result = cat.filter((c) => c. === params.path)
+      /* console.log(params.path)
+      console.log(activeCategory.id) */
+      // console.log(result)
       loadActiveCategory(params.path)
       loadProducts(params.path)
       loadFilters(params.path)
     }
   }, [params.path])
 
-  useEffect(() => {
+  /* useEffect(() => {
     setActivePage(products)
-  }, [products, setActivePage])
+  }, [products, setActivePage]) */
 
   useEffect(() => {
     if (activeCategory) {
       document.title = `Categoria ${activeCategory.name} - Webjump`
     }
   }, [activeCategory])
+
+  const SortByPrice = activePage.map(
+    (page) => (page.price && page.specialPrice) || page.price,
+  )
+  const p = activePage.map((product) => product)
+  // const list = activePage.sort((a, b) => (a.price > b.price ? 1 : -1))
+  /* const list = activePage.sort((a, b) =>
+    b.price || b.specialPrice > a.price ? 1 : -1,
+  )
+  console.log(list) */
+  /*  console.log(p)
+  const pr = ([] as ProductsProps[])
+    .concat(activePage)
+    .sort((productA: ProductsProps, productB: ProductsProps) => {
+      if (productA.specialPrice && productB.specialPrice) {
+        if (productA.specialPrice > productB.specialPrice) {
+          return 1
+        } else {
+          return -1
+        }
+      }
+    }) */
+  /* console.log(
+    activePage.map((page) => (page.price && page.specialPrice) || page.price),
+  ) */
+  /*  console.log(
+    SortByPrice.sort((a: ProductsProps[], b: ProductsProps[]) => {
+      return a - b
+    }),
+  ) */
+  /*  const price = sor
+  console.log(
+    SortByPrice.sort(function (a, b) {
+      return b - a
+    }),
+  ) */
 
   return (
     <ProductContainer>
@@ -112,9 +162,21 @@ export default function Products() {
                   ordenar por
                 </label>
                 <select id="price" className={openSansBold.className}>
-                  <option value="">Selecione</option>
-                  <option value="">Menor preço</option>
-                  <option value="">Maior preço</option>
+                  <option value="Padrão" onClick={() => clearFilter()}>
+                    Padrão
+                  </option>
+                  <option
+                    value="PriceAsc"
+                    onClick={() => setFilterPrice('PriceAsc')}
+                  >
+                    Menor preço
+                  </option>
+                  <option
+                    value="PriceDesc"
+                    onClick={() => setFilterPrice('PriceDesc')}
+                  >
+                    Maior preço
+                  </option>
                 </select>
               </form>
             </FilterPrice>

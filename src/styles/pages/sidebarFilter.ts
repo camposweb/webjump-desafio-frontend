@@ -9,6 +9,11 @@ export const SidebarFilterContainer = styled.aside`
   height: 100%;
   background: ${({ theme }) => theme.colors.white};
   border: 0.063rem solid ${({ theme }) => theme.colors.sidebar};
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 0;
+  }
 `
 
 export const FilterContentContainer = styled.div`
