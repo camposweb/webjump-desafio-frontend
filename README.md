@@ -6,9 +6,10 @@ Projeto desenvolvido a partir do desafio do processo seletivo para a vaga de Fro
 
 ## Tecnologias utilizadas
 
-- NextJS 13
-- styled-components
-- Zustand (Gerenciamento de estado)
+-  [NextJS 13](https://nextjs.org/docs/getting-started/installation) 
+- [styled-components](https://styled-components.com/) (Estilização)
+- [Radix UI](https://www.radix-ui.com/primitives/docs/components/dropdown-menu) (Menu Mobile)
+- [Zustand](https://zustand-demo.pmnd.rs/) (Gerenciamento de estado)
 
 ## Inicializando o projeto
 
