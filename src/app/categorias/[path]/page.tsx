@@ -33,6 +33,7 @@ export default function Products() {
     activePage,
     products,
     setFilterGender,
+    setFilterColor,
     setActivePage,
     setFilterPrice,
     setFilterPriceAsc,
@@ -49,6 +50,7 @@ export default function Products() {
       categories: store.categories,
       products: store.products,
       setFilterGender: store.setFilterGender,
+      setFilterColor: store.setFilterColor,
       setActivePage: store.setActivePage,
       setFilterPrice: store.setFilterPrice,
       setFilterPriceAsc: store.setFilterPriceAsc,
@@ -57,70 +59,26 @@ export default function Products() {
     }
   })
 
-  // const catPath = categories.
+  useEffect(() => {
+    loadCategories()
+  }, [loadCategories])
 
   useEffect(() => {
+    setFilterPrice('Padrão')
+    setFilterColor('')
     setFilterGender('')
-
     if (params.path) {
-      loadActiveCategory(params.path)
-      // loadCategories()
-      const cat = categories.map((category) => category.path)
-      // const result = cat.filter((c) => c. === params.path)
-      /* console.log(params.path)
-      console.log(activeCategory.id) */
-      // console.log(result)
       loadActiveCategory(params.path)
       loadProducts(params.path)
       loadFilters(params.path)
     }
   }, [params.path])
 
-  /* useEffect(() => {
-    setActivePage(products)
-  }, [products, setActivePage]) */
-
   useEffect(() => {
     if (activeCategory) {
       document.title = `Categoria ${activeCategory.name} - Webjump`
     }
   }, [activeCategory])
-
-  const SortByPrice = activePage.map(
-    (page) => (page.price && page.specialPrice) || page.price,
-  )
-  const p = activePage.map((product) => product)
-  // const list = activePage.sort((a, b) => (a.price > b.price ? 1 : -1))
-  /* const list = activePage.sort((a, b) =>
-    b.price || b.specialPrice > a.price ? 1 : -1,
-  )
-  console.log(list) */
-  /*  console.log(p)
-  const pr = ([] as ProductsProps[])
-    .concat(activePage)
-    .sort((productA: ProductsProps, productB: ProductsProps) => {
-      if (productA.specialPrice && productB.specialPrice) {
-        if (productA.specialPrice > productB.specialPrice) {
-          return 1
-        } else {
-          return -1
-        }
-      }
-    }) */
-  /* console.log(
-    activePage.map((page) => (page.price && page.specialPrice) || page.price),
-  ) */
-  /*  console.log(
-    SortByPrice.sort((a: ProductsProps[], b: ProductsProps[]) => {
-      return a - b
-    }),
-  ) */
-  /*  const price = sor
-  console.log(
-    SortByPrice.sort(function (a, b) {
-      return b - a
-    }),
-  ) */
 
   return (
     <ProductContainer>
@@ -167,7 +125,6 @@ export default function Products() {
                 </label>
                 <select
                   id="price"
-                  defaultValue={'Padrão'}
                   onChange={(e) => setFilterPrice(e.target.value)}
                   className={openSansBold.className}
                 >

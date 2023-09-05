@@ -5,20 +5,17 @@ import Image from 'next/image'
 import logoImg from '../../assets/webjump.png'
 import {
   HeaderMobileContainer,
-  NavButtonMobile,
-  NavMenuContent,
-  NavMenuLink,
-  NavMenuMobile,
+  MenuMobile,
   NavMobileHeaderContainer,
-  NavMobileLink,
 } from './styles'
-import { Menu, ShoppingCart } from 'lucide-react'
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
+import { ShoppingCart } from 'lucide-react'
 import { openSansExtraBold } from '../styles/fontStyles'
 import { useStore } from '@/store'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import Hamburger from 'hamburger-react'
 
 export default function HeaderMobile() {
+  const [isOpen, setOpen] = useState(false)
   const { loadCategories, categories } = useStore((store) => {
     return {
       loadCategories: store.loadCategories,
@@ -33,45 +30,19 @@ export default function HeaderMobile() {
   return (
     <HeaderMobileContainer>
       <NavMobileHeaderContainer>
-        <DropdownMenu.Root>
-          <DropdownMenu.Trigger asChild>
-            <NavButtonMobile>
-              <Menu size={30} color="#000" />
-            </NavButtonMobile>
-          </DropdownMenu.Trigger>
-          <NavMenuMobile>
-            <NavMenuContent className="content">
-              <NavMenuLink className={`${openSansExtraBold.className} item`}>
-                <Link href={'/'}>Página Inicial</Link>
-              </NavMenuLink>
-              {categories &&
-                categories.map((category) => {
-                  return (
-                    <>
-                      <NavMenuLink
-                        className={`${openSansExtraBold.className} item`}
-                        key={category.id}
-                      >
-                        <Link
-                          as={`/categorias/${category.path}`}
-                          href={{
-                            pathname: `${category.path}`,
-                          }}
-                        >
-                          {category.name}
-                        </Link>
-                      </NavMenuLink>
-                    </>
-                  )
-                })}
-
-              <NavMenuLink className={`${openSansExtraBold.className} item`}>
-                <Link href={'/contato'}>Contato</Link>
-              </NavMenuLink>
-            </NavMenuContent>
-          </NavMenuMobile>
-        </DropdownMenu.Root>
-
+        <div>
+          <Hamburger
+            toggled={isOpen}
+            toggle={setOpen}
+            onToggle={(toggled) => {
+              if (toggled) {
+                setOpen(true)
+              } else {
+                setOpen(false)
+              }
+            }}
+          />
+        </div>
         <div>
           <Link href={'/'}>
             <Image src={logoImg} alt="" />
@@ -81,6 +52,30 @@ export default function HeaderMobile() {
           <ShoppingCart size={30} fill="#000" color="#000" />
         </div>
       </NavMobileHeaderContainer>
+      <MenuMobile
+        className={isOpen ? `${openSansExtraBold.className} view` : ''}
+      >
+        <nav>
+          <ul>
+            <li>
+              <Link href={'/'}>Página inicial</Link>
+            </li>
+            {categories &&
+              categories.map((category) => {
+                return (
+                  <li key={category.id}>
+                    <Link href={`/categorias/${category.path}`}>
+                      {category.name}
+                    </Link>
+                  </li>
+                )
+              })}
+            <li>
+              <Link href={'/contato'}>Contato</Link>
+            </li>
+          </ul>
+        </nav>
+      </MenuMobile>
     </HeaderMobileContainer>
   )
 }

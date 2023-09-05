@@ -107,7 +107,7 @@ export const useStore = create<ProductsState>((set, get) => {
     },
     setFilterGender: (gender: string) => {
       set({ isLoanding: true })
-      const { filterGender, activePage, products } = get()
+      const { products } = get()
       if (gender !== '') {
         const filter = products.filter(
           (product) => product.filter[0].gender === gender,
@@ -135,17 +135,21 @@ export const useStore = create<ProductsState>((set, get) => {
       set({ isLoanding: true })
       const { activePage, products, clearFilter } = get()
       /* if (string === 'Padrão') {
-        set({ clearFilter })
+        set({ activePage: products })
       } */
       if (string === 'PriceAsc') {
         const priceAsc = activePage.sort((a, b) => (a.price > b.price ? 1 : -1))
         set({ activePage: priceAsc })
+      } else {
+        set({ activePage: products })
       }
       if (string === 'PriceDesc') {
         const priceDesc = activePage.sort((a, b) =>
           a.price < b.price ? 1 : -1,
         )
         set({ activePage: priceDesc })
+      } else {
+        set({ activePage: products })
       }
     },
     setFilterPriceAsc: () => {
